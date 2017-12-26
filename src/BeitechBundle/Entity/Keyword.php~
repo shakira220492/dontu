@@ -1,0 +1,32 @@
+<?php
+
+namespace BeitechBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Keyword
+ *
+ * @ORM\Table(name="keyword")
+ * @ORM\Entity
+ */
+class Keyword
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_keyword", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idKeyword;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name_keyword", type="string", length=50, nullable=false)
+     */
+    private $nameKeyword;
+
+
+}

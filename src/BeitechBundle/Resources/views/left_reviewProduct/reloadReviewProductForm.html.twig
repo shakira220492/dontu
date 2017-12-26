@@ -1,0 +1,300 @@
+{% for products in product %} 
+
+    <div id="divReloadReviewProduct">
+        <div id="informationSection"
+             style="background-color: brown;">
+            <div style="
+                 position: absolute;
+                 top: 0px;
+                 height: 50px;
+                 left: 0px;
+                 right: 0px;
+                 background-color: white;
+                 ">
+                <div id="nameProduct" style="
+                     height: 20px;
+                     background-color: #f2dede; 
+                     text-align: left; 
+                     font-size: medium;
+                     color: #9d9d9d;">{{products.nameProduct}}</div>
+                <div id="nameProduct" style="
+                     height: 30px;
+                     background-color: #f2dede; 
+                     text-align: left; 
+                     font-size: x-large;
+                     color: #0088cc;">Katy Perry</div>
+            </div>
+            <div style="
+                 position: absolute;
+                 top: 50px;
+                 height: 30px;
+                 left: 0px;
+                 right: 0px;
+                 background-color: white;
+                 align-content: flex-end;
+                 ">
+                <div id="amountViewsProduct" style="background-color: #f2dede; text-align: right; font-size: medium; color: #0088cc;">
+                    {{products.amountViewsProduct}} views
+                </div>
+            </div>
+            <div style="
+                 position: absolute;
+                 background-color: white;
+                 top: 80px;
+                 height: 30px;
+                 left: 0px;
+                 right: 0px;">
+                <img src="files/images/icons/like.png" alt="Mountain View" style="width:15px; height:15px; opacity: 0.9;" onclick="sendLike({{products.idProduct}}, {{products.likesAmountProduct}});">
+                <font id="amountViewsProduct" size="1" style="color: #0088cc;">23454555</font>
+                
+                <img src="files/images/icons/dislike.png" alt="Mountain View" style="width:15px; height:15px; opacity: 0.9;" onclick="sendDislike({{products.idProduct}}, {{products.dislikesAmountProduct}});">
+                <font id="amountViewsProduct" size="1" style="color: #0088cc;">235</font>
+            </div>
+            <div style="
+                 position: absolute;
+                 background-color: white;
+                 top: 110px;
+                 height: 135px;
+                 left: 0px;
+                 right: 0px;">
+                <textarea 
+                    id="productIdTXT" 
+                    name="comentarios" 
+                    rows="5" 
+                    cols="40" 
+                    style="resize: none;"></textarea>
+                <div 
+                    style="
+                    background: white;
+                    width: 40px;
+                    right: 0px;
+                    position: absolute;"
+                    onclick="checkCommentary({{products.idProduct}});">
+                    <font size="2">OK</font>
+                </div>
+            </div>
+        </div>
+        <div id="commentsAboutVideo"
+             style="
+             overflow-y: scroll;
+             background-color: white;
+             position: absolute;
+             top: 245px;
+             bottom: 0px;
+             left: 0px;
+             right: 0px;"></div>
+    </div>
+{% endfor %}
+
+<script>
+    function checkCommentary(id_product) {
+        
+        var status = checkLogin(id_product);
+        
+        }
+        
+        function sendLike(id_product, likesAmount_product) {
+            
+        var form = $('#send-like-ajax');
+
+        var url = form.attr('action');
+
+        var id_product = id_product;
+        var amount = likesAmount_product+1;
+
+
+        $.post(url, {id_product: id_product, amount: amount, status: status}, function (result) {
+
+            for (i = 0; i < result[0].amount; i++) {
+                var commentary_id = result[i].commentary_id;
+                var commentary_description = result[i].commentary_description;
+                
+                $("#commentsAboutVideo").append(
+                    "<div style='position: relative;'>"+
+                    "<div "+
+                    "style='"+
+                    "background: white; "+
+                    "height: 100px; "+
+                    "width: 100%; '"+
+                    ">"+
+                    "<div "+
+                    "style='"+
+                    "background: white; "+
+                    "position: absolute; "+
+                    "height: 80px; "+
+                    "width: 100%; "+
+                    "overflow-y: scroll;'>"+
+                    "<p>"+commentary_description+"</p>"+
+                    "</div>"+
+                    "<div "+
+                    "style='"+
+                    "top: 80px; "+
+                    "background: white; height: 20px; "+
+                    "position: absolute;'>"+
+                    "<b>USERNAME</b>"+
+                    "</div>"+
+                    "<div "+
+                    "style='"+
+                    "top: 80px; "+
+                    "right: 20px;"+
+                    "background: white; "+
+                    "position: absolute;'>"+
+                    "<img src='files/images/icons/like.png' alt='Mountain View' style='width:20px; height:20px; opacity: 0.9; right: 40px;'>"+
+                    "<img src='files/images/icons/dislike.png' alt='Mountain View' style='width:20px; height:20px; opacity: 0.9; right: 20px;'>"+
+                    "</div>"+
+                    "</div>"+
+                    "</div><br>"
+                );
+            }
+            
+            }).fail(function () {
+                alert('ERROR');
+            });
+            
+        }
+        
+        function sendDislike() {
+            alert("DISLIKE");
+        }
+        
+        function checkLogin(id_product) {
+        var form = $('#check-sesion-ajax');
+        var url = form.attr('action');
+
+        $.post(url, function (data)
+        {
+            var sessionStatus = data[0].sessionStatus;
+
+            if (sessionStatus === "0")
+            {
+                displaceLogInForm(); validateLoginForm();
+                alert("2_NO se encuentra logueado");
+            } else
+            {
+                alert("2_SI se encuentra logueado");
+                sendComments(id_product);
+            }
+
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+    
+    function sendComments(id_product)
+    {
+        alert("You are unforggetable!");
+        
+        var form = $('#send-commentary-ajax');
+
+        var url = form.attr('action');
+
+        var id_product = id_product;
+        var description = document.getElementById('productIdTXT').value;
+        
+        var bebe = document.getElementById('user_id_login').value;
+        
+        var status = "empty"
+        var commentsAboutVideo = document.getElementById("commentsAboutVideo").textContent;
+
+        if(!commentsAboutVideo)
+        {
+            status = "empty";
+            alert("empty");
+        }
+        else
+        {
+            status = "full";
+            alert("full");
+        }
+
+
+        $.post(url, {id_product: id_product, description: description, status: status}, function (result) {
+
+            for (i = 0; i < result[0].amount; i++) {
+                var commentary_id = result[i].commentary_id;
+                var commentary_description = result[i].commentary_description;
+                var user_name = result[i].user_name;
+                
+                $("#commentsAboutVideo").append(
+                    "<div style='position: relative;'>"+
+                    "<div "+
+                    "style='"+
+                    "background: white; "+
+                    "height: 100px; "+
+                    "width: 100%; '"+
+                    ">"+
+                    "<div "+
+                    "style='"+
+                    "background: white; "+
+                    "position: absolute; "+
+                    "height: 80px; "+
+                    "width: 100%; "+
+                    "overflow-y: scroll;'>"+
+                    "<p>"+commentary_description+"</p>"+
+                    "</div>"+
+                    "<div "+
+                    "style='"+
+                    "top: 80px; "+
+                    "background: white; height: 20px; "+
+                    "position: absolute;'>"+
+                    "<b>"+user_name+"</b>"+
+                    "</div>"+
+                    "<div "+
+                    "style='"+
+                    "top: 80px; "+
+                    "right: 20px;"+
+                    "background: white; "+
+                    "position: absolute;'>"+
+                    "<img src='files/images/icons/like.png' alt='Mountain View' style='width:20px; height:20px; opacity: 0.9; right: 40px;' onclick='sendLikeCommentary("+commentary_id+");'>"+
+                    "<b id='amountLikes"+commentary_id+"'>likes</b>"+
+                    "<img src='files/images/icons/dislike.png' alt='Mountain View' style='width:20px; height:20px; opacity: 0.9; right: 20px;' onclick='sendDislikeCommentary("+commentary_id+");'>"+
+                    "<b id='amountDislikes"+commentary_id+"'>dislikes</b>"+
+                    "</div>"+
+                    "</div>"+
+                    "</div><hr/>"
+                );
+            }
+            
+            }).fail(function () {
+                alert('ERROR');
+            });
+    }
+    
+    function sendLikeCommentary(commentary_id)
+    {
+        var form = $('#send-like-commentary-ajax');
+
+        var url = form.attr('action');
+                
+        var id_commentary = commentary_id;
+        var stringAmountId_commentary = "amountLikes"+id_commentary;
+
+        $.post(url, {id_commentary}, function (result) {
+ 
+            var amountLikesValue = result[0].newAmountLikesValue;
+            document.getElementById(stringAmountId_commentary).innerHTML = amountLikesValue;
+        
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+    
+    function sendDislikeCommentary(commentary_id)
+    {
+        var form = $('#send-dislike-commentary-ajax');
+        
+        var url = form.attr('action');
+
+        var id_commentary = commentary_id;
+        var stringAmountId_commentary = "amountDislikes"+id_commentary;
+        
+        $.post(url, {id_commentary}, function (result) {
+ 
+            var amountDislikesValue = result[0].newAmountDislikesValue;
+            document.getElementById(stringAmountId_commentary).innerHTML = amountDislikesValue;
+            
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+</script>

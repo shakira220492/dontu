@@ -1,0 +1,63 @@
+<?php
+
+namespace BeitechBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * News
+ *
+ * @ORM\Table(name="news", indexes={@ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Entity
+ */
+class News
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_news", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idNews;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_news", type="string", length=100, nullable=false)
+     */
+    private $titleNews;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_news", type="string", length=300, nullable=false)
+     */
+    private $imageNews;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link_news", type="text", length=65535, nullable=false)
+     */
+    private $linkNews;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_news", type="text", length=65535, nullable=false)
+     */
+    private $descriptionNews;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
+     */
+    private $idUser;
+
+
+}

@@ -1,0 +1,91 @@
+<?php
+
+namespace BeitechBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Product
+ *
+ * @ORM\Table(name="product", indexes={@ORM\Index(name="id_user", columns={"id_user"}), @ORM\Index(name="id_user_2", columns={"id_user"})})
+ * @ORM\Entity
+ */
+class Product
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_product", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idProduct;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name_product", type="string", length=255, nullable=false)
+     */
+    private $nameProduct;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_product", type="string", length=500, nullable=false)
+     */
+    private $descriptionProduct;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price_product", type="integer", nullable=false)
+     */
+    private $priceProduct;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_product", type="string", length=100, nullable=false)
+     */
+    private $imageProduct;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="video_product", type="string", length=100, nullable=false)
+     */
+    private $videoProduct;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="amount_views_product", type="integer", nullable=false)
+     */
+    private $amountViewsProduct;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="likes_amount_product", type="integer", nullable=false)
+     */
+    private $likesAmountProduct;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dislikes_amount_product", type="integer", nullable=false)
+     */
+    private $dislikesAmountProduct;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
+     */
+    private $idUser;
+
+
+}

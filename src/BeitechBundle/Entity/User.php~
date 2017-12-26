@@ -1,0 +1,74 @@
+<?php
+
+namespace BeitechBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_name_user", type="string", length=100, nullable=false)
+     */
+    private $userNameUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name_user", type="string", length=255, nullable=false)
+     */
+    private $firstNameUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name_user", type="string", length=255, nullable=false)
+     */
+    private $lastNameUser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mobile_number_user", type="integer", nullable=false)
+     */
+    private $mobileNumberUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password_user", type="text", length=65535, nullable=false)
+     */
+    private $passwordUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="birthday_user", type="string", length=20, nullable=false)
+     */
+    private $birthdayUser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="genre_user", type="string", length=10, nullable=false)
+     */
+    private $genreUser;
+
+
+}

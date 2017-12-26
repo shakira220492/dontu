@@ -1,0 +1,223 @@
+<div id="newsFeedContent">
+{#    <div style='position: relative;'
+         id='1'>
+        <div style='background: yellow; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='2'>
+        <div style='background: yellowgreen; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='3'>
+        <div style='background: wheat; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='4'>
+        <div style='background: red; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='5'>
+        <div style='background: teal; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='6'>
+        <div style='background: indigo; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='7'>
+        <div style='background: indigo; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='8'>
+        <div style='background: indigo; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='9'>
+        <div style='background: indigo; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>
+    <div style='position: relative;'
+         id='10'>
+        <div style='background: indigo; height: 200px; width: 100%;'>
+            <div
+                style='background-color: gray; height: 150px; width: 100%;'>
+                <img src="files/images/icons/upload video.png" alt="Mountain View" style="width:100%; height:100%; opacity: 0.9;">
+            </div>
+            <div
+                style='background-color: blue; height: 50px; width: 100%;'>
+                <p>titulo</p>
+            </div>
+        </div>
+        <hr/>
+    </div>#}
+</div>
+
+<script>
+    var i = 10;
+    var section = "";
+    var firstOne = "0";
+    function uploadNews() {
+        var newsFeedContent = document.getElementById("newsFeedContent");
+
+        i++;
+
+        if (i % 2 === 0)
+        {
+            section = "white";
+        } else
+        {
+            section = "yellow";
+        }
+
+        
+        var form = $('#select-news-form-ajax');
+        var url = form.attr('action');
+
+        $.post(url, function (data)
+        {
+                  
+        var id_news = data[0].id_news;
+        var title_news = data[0].title_news;
+        var image_news = data[0].image_news;
+        var link_news = data[0].link_news;
+        var description_news = data[0].description_news;
+
+        $("#newsFeedContent").append(
+                "<div style='position: relative;'" +
+                "id='" + i + "'>" +
+                "<div style='background: " + section + "; height: 200px; width: 100%;'>" +
+                "<div " +
+                "style='background: gray; height: 150px; width: 100%;'>" +
+                "<img src='files/images/icons/upload video.png' alt='Mountain View' style='width:100%; height:100%; opacity: 0.9;'>" +
+                "</div>" +
+                "<div " +
+                "style='background: blue; height: 50px; width: 100%;'>" +
+                "<p>id-" + id_news + "-</p>" +
+                "<p>title-" + title_news + "-</p>" +
+                "<p>image-" + image_news + "-</p>" +
+                "<p>link-" + link_news + "-</p>" +
+                "<p>description-" + description_news + "-</p>" +
+                "</div>" +
+                "</div><hr/>" +
+                "</div>"
+                );
+
+        }).fail(function () {
+            alert('ERROR');
+        });
+        
+    }
+    
+    var status = "";
+        
+    function extendIconUploadNews()
+    {
+        if(status === "open")
+        {
+            status = "close";
+            var divUploadNews = document.getElementById('uploadNews');
+            var divUploadNewsForm = document.getElementById('uploadNewsForm');
+
+            divUploadNews.style.height = "300px";
+            divUploadNewsForm.style.top = "300px";
+        }
+        else
+        {
+            status = "open";
+            var divUploadNews = document.getElementById('uploadNews');
+            var divUploadNewsForm = document.getElementById('uploadNewsForm');
+            
+            divUploadNews.style.height = "0px";
+            divUploadNewsForm.style.top = "30px";
+        }
+    }
+</script>

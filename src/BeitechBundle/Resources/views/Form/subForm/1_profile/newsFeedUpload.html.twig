@@ -1,0 +1,111 @@
+<form id="uploadNews">
+
+    <label style="
+           position: absolute;
+           top: 0px; 
+           left: 0px;">TITLE</label>
+    <input style="
+           position: absolute;
+           top: 0px;
+           left: 80px;" 
+           type="text" 
+           id="title_news" 
+           name="title_news" 
+           size="37" 
+           placeholder="Title news"/>
+
+    <label style="
+           position: absolute;
+           top: 40px;
+           left: 0px;">URL</label>
+    <input style="
+           position: absolute;
+           top: 40px;
+           left: 80px;" 
+           type="text" 
+           id="link_news" 
+           name="url_news" 
+           size="37" 
+           placeholder="Url news"/>
+
+    <label style="
+           position: absolute;
+           top: 80px;
+           left: 0px;">IMAGE</label>
+    <input type="file" name="image_news" id="image_news" 
+           style="
+           position: absolute;
+           top: 70px;
+           left: 75px;"/>
+
+    <label style="
+           position: absolute;
+           top: 120px;
+           left: 0px;">DESCRIPTION</label>
+    <textarea 
+        id="description_news" 
+        name="description news" 
+        rows="4" 
+        cols="47" 
+        style="resize: none;
+        position: absolute;
+        top: 140px;" 
+        placeholder='DESCRIPTION'></textarea>
+
+    <div
+        style="background: yellow;
+        width: 50px;
+        height: 25px;
+        position: absolute;
+        top: 230px;
+        left: 150px;"
+        onclick="uploadNewsFormAjax();">
+        OK
+    </div>
+
+</form>
+
+<script>
+
+    function uploadNewsFormAjax()
+    {
+        var form = $('#upload-news-form-ajax');
+        var url = form.attr('action');
+
+        var title_news = document.getElementById("title_news").value;
+        var image_news = document.getElementById("image_news").value;
+        var link_news = document.getElementById("link_news").value;
+        var description_news = document.getElementById("description_news").value;
+
+        $.post(url, {title_news: title_news,
+            image_news: image_news,
+            link_news: link_news,
+            description_news: description_news
+        }, function (data)
+        {
+
+            alert("oye te amo: " + data[0].newAmountLikesValue);
+
+            alert("When a woman2222!");
+
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+
+
+    $.post(url, {id: id,
+        hour: hour,
+        geolocalization: geolocalization
+    }, function (result) {
+        console.log("id... " + result[0].id);
+        console.log("hour... " + result[0].hour);
+        console.log("geolocalization... " + result[0].geolocalization);
+        console.log("geolocalization33... " + result[0].geolocalization33);
+
+    }).fail(function () {
+        alert('ERROR');
+    });
+
+
+</script>

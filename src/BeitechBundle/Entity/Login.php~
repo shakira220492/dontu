@@ -1,0 +1,49 @@
+<?php
+
+namespace BeitechBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Login
+ *
+ * @ORM\Table(name="login", indexes={@ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Entity
+ */
+class Login
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_login", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idLogin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="hour_login", type="string", length=20, nullable=false)
+     */
+    private $hourLogin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="geolocalization_login", type="string", length=20, nullable=false)
+     */
+    private $geolocalizationLogin;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
+     */
+    private $idUser;
+
+
+}

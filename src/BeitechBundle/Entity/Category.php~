@@ -1,0 +1,39 @@
+<?php
+
+namespace BeitechBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity
+ */
+class Category
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_category", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idCategory;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name_category", type="string", length=100, nullable=false)
+     */
+    private $nameCategory;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_product", type="integer", nullable=false)
+     */
+    private $idProduct;
+
+
+}

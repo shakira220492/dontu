@@ -1,0 +1,106 @@
+
+
+<style>
+    div#playBannerTransitionOutside {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+
+    div#playBannerTransitionInside {
+        opacity: 0;
+    }
+
+    #playBannerTransitionOutside:hover >#playBannerTransitionInside {
+        opacity: 0.7;
+        transition-property: all;
+        transition-duration: 0.5s;
+    }
+
+    div#progressBar {
+        -webkit-animation: primeraAnimacion 20s;
+        animation: primeraAnimacion 20s linear 2s infinite alternate;
+
+    }
+
+    @-webkit-keyframes primeraAnimacion{
+        0%{background-color: red;}
+        25%{background-color: yellow;}
+        50%{background-color: blue;}
+        100%{background-color: green;}
+    }
+
+    #myCanvas{
+        border: 2px dotted black;
+    }
+</style>
+
+{#<div id="divVideo" style="background-color: white; width: 100%; height: 100%;">
+
+    <video id="my_video" class="productMain containment-wrapper-video" width="100%" height="98%" 
+            style="background-color: white;" muted="true">
+        <source src="files/justin bieber baby.mp4" type="video/mp4">
+    </video>
+
+    <div style="display: none;">
+    <video id="my_video2" class="productMain containment-wrapper-video" width="100%" height="98%" 
+           style="background-color: white;" muted="true">
+        <source src="{{ asset('files'~'/'~'Imagine.mp4') }}" type="video/mp4">
+    </video>
+    </div>
+    
+</div>#}
+
+<div id="divVideoProductAppend" style="background-color: red; width: 100%; height: 100%;">
+</div>
+
+<script>
+    $('#playBanner').draggable({containment: ".containment-wrapper-video", scroll: false});
+    $('#volumeButtonInside').draggable({containment: "#volumeButton", scroll: false});
+</script>
+
+<script>
+
+    function amountVisits()
+    {
+        console.log("function upload keywords");
+
+        var form = $('#amount-visits-ajax');
+        var url = form.attr('action');
+
+        var id = 1;
+        var hour = "hour22";
+        var geolocalization = "geolocalization";
+
+        var geolocalization22 = navigator.geolocation.getCurrentPosition(showPosition);
+
+        var bloc = document.getElementById("bloque");
+        navigator.geolocation.getCurrentPosition(showPosition);
+        function showPosition(position)
+        {
+            bloc.innerHTML = "Latitud: " + position.coords.latitude +
+                    "<br>Longitud: " + position.coords.longitude;
+
+            alert(position.coords.latitude);
+            alert(position.coords.longitude);
+        }
+
+        console.log("g22: " + geolocalization22);
+
+        $.post(url, {id: id,
+            hour: hour,
+            geolocalization: geolocalization
+        }, function (result) {
+            console.log("id... " + result[0].id);
+            console.log("hour... " + result[0].hour);
+            console.log("geolocalization... " + result[0].geolocalization);
+            console.log("geolocalization33... " + result[0].geolocalization33);
+
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+
+</script>

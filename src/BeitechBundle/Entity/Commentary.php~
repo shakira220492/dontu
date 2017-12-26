@@ -1,0 +1,66 @@
+<?php
+
+namespace BeitechBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Commentary
+ *
+ * @ORM\Table(name="commentary", indexes={@ORM\Index(name="id_product", columns={"id_product"}), @ORM\Index(name="id_user", columns={"id_user"})})
+ * @ORM\Entity
+ */
+class Commentary
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_commentary", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idCommentary;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_commentary", type="text", length=65535, nullable=false)
+     */
+    private $descriptionCommentary;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="amount_likes_commentary", type="integer", nullable=false)
+     */
+    private $amountLikesCommentary;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="amount_dislikes_commentary", type="integer", nullable=false)
+     */
+    private $amountDislikesCommentary;
+
+    /**
+     * @var \Product
+     *
+     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_product", referencedColumnName="id_product")
+     * })
+     */
+    private $idProduct;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
+     */
+    private $idUser;
+
+
+}
